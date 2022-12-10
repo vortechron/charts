@@ -106,12 +106,12 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
+          # lifecycle:
+          #   postStart:
+          #     exec:
+          #       command:
+          #         - /bin/sh
+          #         - -c
                   # - cp /tmp/.env /var/www/html/.env && cp -r /var/www/html/. /app && cd /var/www/html && sh deploy.sh
         {{- if .Values.scheduler.enabled }}
         - name: scheduler
@@ -153,12 +153,12 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
+          # lifecycle:
+          #   postStart:
+          #     exec:
+          #       command:
+          #         - /bin/sh
+          #         - -c
                   # - cp /tmp/.env /var/www/html/.env && cp -r /var/www/html/. /app && cd /var/www/html && sh deploy.sh
         {{- end }}
         - name: nginx
