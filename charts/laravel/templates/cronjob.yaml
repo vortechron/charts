@@ -6,6 +6,18 @@ spec:
   schedule: "* * * * *"
   jobTemplate:
     spec:
+      volumes:
+        - name: app
+          emptyDir: {}
+        - name: env
+          secret:
+            secretName: {{ if .Values.app.envSecretName }} {{ .Values.app.envSecretName }} {{ else }} {{ .Release.Name }}-env {{ end }}
+        - name: php-ini-config
+          configMap:
+            name: {{ if .Values.phpIni.configName }} {{ .Values.phpIni.configName }} {{ else }} {{ .Release.Name }}-php-ini-config {{ end }}
+        {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       template:
         spec:
           containers:
