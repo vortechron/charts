@@ -120,17 +120,12 @@ spec:
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.app.image.pullPolicy }}
           volumeMounts:
-            - name: app
-              mountPath: /app
             - name: env
               mountPath: /tmp/.env
               subPath: .env
             - name: php-ini-config
               mountPath: /usr/local/etc/php/php.ini
               subPath: php.ini
-            - name: php-fpm-config
-              mountPath: /usr/local/etc/php-fpm.d/laravel.conf
-              subPath: laravel.conf
             {{- with .Values.app.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
