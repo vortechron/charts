@@ -3,12 +3,12 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 8.0.0
-    created: "2022-12-10T22:41:03.247658+08:00"
+    created: "2022-12-10T22:48:59.748157+08:00"
     description: Helm chart scaffolding for Laravel applications.
-    digest: 1161ef94f3d9f5dc9894a0a3d916e615d5eeb705507fa7278ff05bf51e2510f8
+    digest: 2ffefee2dda82e6607847f4842441dfcc3aa7b5617ee32771787db34e7dfc7ab
     name: laravel
     type: application
     urls:
     - https://vortechron.github.io/charts/laravel-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-10T22:41:03.246491+08:00"
+generated: "2022-12-10T22:48:59.746607+08:00"
