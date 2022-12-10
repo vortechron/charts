@@ -130,6 +130,9 @@ spec:
             - name: php-ini-config
               mountPath: /usr/local/etc/php/php.ini
               subPath: php.ini
+            - name: php-fpm-config
+              mountPath: /usr/local/etc/php-fpm.d/laravel.conf
+              subPath: laravel.conf
             {{- with .Values.app.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
