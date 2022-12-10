@@ -4,7 +4,8 @@
 
 replicaCount: 1
 
-strategy: {}
+strategy:
+  {}
   # type: RollingUpdate
   # rollingUpdate:
   #   maxSurge: 0
@@ -224,10 +225,12 @@ rbac:
 
 podAnnotations: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -244,7 +247,8 @@ service:
 
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   # class: "nginx"
@@ -306,10 +310,7 @@ scheduler:
   # will run the "schedule:run" command each minute.
   enabled: true
 
-  command:
-    - php
-    - artisan
-    - schedule:work
+  command: "php artisan schedule:work"
 
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

@@ -119,8 +119,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.app.image.pullPolicy }}
-          command:
-            {{- toYaml .Values.scheduler.command | nindent 12 }}
           volumeMounts:
             - name: app
               mountPath: /app
@@ -164,7 +162,7 @@ spec:
                 command:
                   - /bin/sh
                   - -c
-                  - cp /tmp/.env /var/www/html/.env && cp -r /var/www/html/. /app && cd /var/www/html && sh deploy.sh
+                  - cp /tmp/.env /var/www/html/.env && cp -r /var/www/html/. /app && cd /var/www/html && sh deploy.sh && {{ .Values.scheduler.command }}
         {{- end }}
         - name: nginx
           securityContext:
