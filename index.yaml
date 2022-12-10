@@ -11,4 +11,26 @@ entries:
     urls:
     - https://vortechron.github.io/charts/laravel-1.0.0.tgz
     version: 1.0.0
-generated: "2022-12-10T16:22:43.214167+08:00"
+  laravel-octane:
+  - apiVersion: v2
+    appVersion: 8.0.0
+    created: "2022-12-10T08:23:11.608524646Z"
+    description: Helm chart scaffolding for Octane-based Laravel applications.
+    digest: d9b3c9bfbef4cd6188d7853a66fc96a557c4aec64aa7942ca1cead036ef9fb23
+    name: laravel-octane
+    type: application
+    urls:
+    - https://github.com/vortechron/charts/releases/download/laravel-octane-1.0.0/laravel-octane-1.0.0.tgz
+    version: 1.0.0
+  laravel-worker:
+  - apiVersion: v2
+    appVersion: 8.0.0
+    created: "2022-12-10T08:23:11.717429853Z"
+    description: Helm chart scaffolding for additional Laravel worker applications.
+    digest: 02790372980594345b4c50a10d8a4ebb997835a4e1bb97e25f8bc89b7ff6795f
+    name: laravel-worker
+    type: application
+    urls:
+    - https://github.com/vortechron/charts/releases/download/laravel-worker-1.1.0/laravel-worker-1.1.0.tgz
+    version: 1.1.0
+generated: "2022-12-10T08:23:11.717435153Z"
