@@ -153,7 +153,7 @@ spec:
             periodSeconds: {{ .Values.scheduler.healthcheck.period }}
           {{- end }}
           resources:
-            {{- toYaml .Values.scheduler.resources | nindent 12 }}
+            {{- toYaml .Values.app.resources | nindent 12 }}
           {{- with .Values.app.extraEnv }}
           env:
             {{- toYaml . | nindent 12 }}
