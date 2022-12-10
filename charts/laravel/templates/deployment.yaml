@@ -122,6 +122,8 @@ spec:
           command:
             {{- toYaml .Values.scheduler.command | nindent 12 }}
           volumeMounts:
+            - name: app
+              mountPath: /app
             - name: env
               mountPath: /tmp/.env
               subPath: .env
