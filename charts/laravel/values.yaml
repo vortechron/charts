@@ -13,7 +13,8 @@ strategy:
 
 nameOverride: ""
 fullnameOverride: ""
-imagePullSecrets: []
+imagePullSecrets:
+  - name: "regcred"
 
 # Configure Laravel PHP-FPM container.
 app:

@@ -9,8 +9,10 @@ spec:
       template:
         spec:
           serviceAccountName: {{ include "laravel.serviceAccountName" . }}
+          {{- with .Values.imagePullSecrets }}
           imagePullSecrets:
-            - name: "regcred"
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumes:
           - name: app
             emptyDir: {}
@@ -30,10 +32,6 @@ spec:
             - name: php-ini-config
               mountPath: /usr/local/etc/php/php.ini
               subPath: php.ini
-            command:
-              - php
-              - artisan
-              - schedule:run
             {{- with .Values.app.extraEnv }}
             env:
               {{- toYaml . | nindent 12 }}
@@ -44,5 +42,5 @@ spec:
                   command:
                     - /bin/sh
                     - -c
-                    - cp /tmp/.env /var/www/html/.env && cp -r /var/www/html/. /app && cd /var/www/html && sh deploy.sh
+                    - cp /tmp/.env /var/www/html/.env && cp -r /var/www/html/. /app && cd /var/www/html && sh deploy.sh && php artisan schedule:work
           restartPolicy: OnFailure
