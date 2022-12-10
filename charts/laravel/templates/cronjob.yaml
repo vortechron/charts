@@ -9,13 +9,8 @@ spec:
       template:
         spec:
           serviceAccountName: {{ include "laravel.serviceAccountName" . }}
-
-          securityContext:
-            {{- toYaml .Values.podSecurityContext | nindent 8 }}
-          {{- with .Values.imagePullSecrets }}
           imagePullSecrets:
-            {{- toYaml . | nindent 8 }}
-          {{- end }}
+            - name: "regcred"
           volumes:
           - name: app
             emptyDir: {}
@@ -25,13 +20,8 @@ spec:
           - name: php-ini-config
             configMap:
               name: {{ if .Values.phpIni.configName }} {{ .Values.phpIni.configName }} {{ else }} {{ .Release.Name }}-php-ini-config {{ end }}
-          {{- with .Values.extraVolumes }}
-          {{- toYaml . | nindent 8 }}
-          {{- end }}
           containers:
           - name: scheduler
-            securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
             image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag | default .Chart.AppVersion }}"
             volumeMounts:
             - name: env
