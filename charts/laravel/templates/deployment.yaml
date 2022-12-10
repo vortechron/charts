@@ -126,16 +126,13 @@ spec:
             - name: php-ini-config
               mountPath: /usr/local/etc/php/php.ini
               subPath: php.ini
-            - name: php-fpm-config
-              mountPath: /usr/local/etc/php-fpm.d/laravel.conf
-              subPath: laravel.conf
             {{- with .Values.app.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
-          ports:
-            - name: php-fpm
-              containerPort: 9001
-              protocol: TCP
+          command:
+            - /bin/sh
+            - -c
+            - cp /tmp/.env /var/www/html/.env && cd /var/www/html && sh deploy.sh && {{ .Values.scheduler.command }}
           {{- if .Values.scheduler.healthcheck.enabled }}
           readinessProbe:
             exec:
@@ -158,13 +155,6 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
-                  - cp /tmp/.env /var/www/html/.env && cp -r /var/www/html/. /app && cd /var/www/html && sh deploy.sh && {{ .Values.scheduler.command }}
         {{- end }}
         - name: nginx
           securityContext:
