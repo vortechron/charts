@@ -26,7 +26,7 @@ scheduler:
   # will run the "schedule:run" command each minute.
   enabled: true
 
-  command: "php artisan schedule:work"
+  command: []
 
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

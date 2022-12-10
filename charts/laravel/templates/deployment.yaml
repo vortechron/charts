@@ -129,10 +129,10 @@ spec:
             {{- with .Values.app.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
+          {{- with .Values.scheduler.command }}
           command:
-            - /bin/sh
-            - -c
-            - cp /tmp/.env /var/www/html/.env && cd /var/www/html && sh deploy.sh && {{ .Values.scheduler.command }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- if .Values.scheduler.healthcheck.enabled }}
           readinessProbe:
             exec:
