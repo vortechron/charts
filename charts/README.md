@@ -10,3 +10,5 @@ $ git commit -av
 $ git push origin master
 
 From there, I can do a helm repo add tscharts https://technosophos.github.com/tscharts
+
+helm package charts/laravel && helm repo index . --url https://vortechron.github.io/charts/
